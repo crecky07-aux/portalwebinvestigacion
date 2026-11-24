@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Congresos y Expoferia UNERMB 2026</title>
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Tipografía Serif para el logo institucional UNERMB -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-unermb sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#" data-tab-target="inicio">
+        <img src="logo uni.png" alt="Logo UNERMB" style="height: 40px; width: auto; background-color: #ffffff; padding: 3px 5px; border-radius: 6px; object-fit: contain;" class="me-2 shadow-sm">
+        <span style="font-family: 'Cinzel', 'Times New Roman', serif; font-weight: 800; font-size: 1.55rem; letter-spacing: 0.5px; line-height: 1; display: inline-flex; align-items: center;">
+          <span style="color: #ffffff;">UNE</span><span style="color: #ffd60a;">R</span><span style="color: #4ea8de;">M</span><span style="color: #ff4d4d;">B</span>
+        </span>
+        <small class="fw-light fs-6 d-none d-sm-inline ms-2 text-white-50">| Expoferia e Investigación</small>
+      </a>
+
+      <div class="d-flex align-items-center order-lg-last ms-2 gap-2">
+        <!-- Botón Modo Claro / Oscuro -->
+        <button id="themeToggle" class="btn btn-theme-toggle" type="button" title="Cambiar modo claro/oscuro" aria-label="Cambiar tema">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+
+        <!-- Botón Menú Hamburguesa Minimalista -->
+        <button class="navbar-toggler minimal-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Menú">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link active" href="#inicio" data-tab-target="inicio">
+              <i class="fa-solid fa-house me-1 d-lg-none"></i>Inicio
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#registro" data-tab-target="registro">
+              <i class="fa-solid fa-file-pen me-1 d-lg-none"></i>Registro Ponentes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#cronograma" data-tab-target="cronograma">
+              <i class="fa-solid fa-calendar-days me-1 d-lg-none"></i>Cronograma
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#expoferia" data-tab-target="expoferia">
+              <i class="fa-solid fa-store me-1 d-lg-none"></i>Stands Expoferia
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#repositorio" data-tab-target="repositorio">
+              <i class="fa-solid fa-book-bookmark me-1 d-lg-none"></i>Repositorio Tesis
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#noticias" data-tab-target="noticias">
+              <i class="fa-solid fa-newspaper me-1 d-lg-none"></i>Noticias
+            </a>
+          </li>
+          <!-- Pestaña Dinámica Login / Mi Cuenta -->
+          <li class="nav-item">
+            <a class="nav-link" href="#acceso" data-tab-target="acceso" id="navLinkAcceso">
+              <i class="fa-solid fa-user-lock me-1"></i><span id="textoNavAcceso">Iniciar Sesión</span>
+            </a>
+          </li>
+          <!-- Pestaña Exclusiva del Administrador -->
+          <li class="nav-item d-none" id="navItemAdmin">
+            <a class="nav-link text-warning fw-bold" href="#admin" data-tab-target="admin">
+              <i class="fa-solid fa-user-shield me-1"></i>Panel Admin
+              <span class="badge bg-dark text-warning ms-1 rounded-pill">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENEDOR DE PESTAÑAS (SPA) -->
+  <div id="appTabs">
+
+    <!-- ==================== PESTAÑA 1: INICIO ==================== -->
+    <div id="tab-inicio" class="tab-view active">
+      <header class="hero-section text-center">
+        <div class="container">
+          <span class="badge bg-warning text-dark mb-3 px-3 py-2 fw-bold text-uppercase shadow-sm">
+            <i class="fa-solid fa-star me-1"></i>Edición 2026
+          </span>
+          <h1 class="display-5 fw-bold mb-3">Portal de Congresos, Jornadas y Expoferia UNERMB</h1>
+          <p class="lead mx-auto opacity-90 hero-subtitle">
+            Espacio centralizado de la Universidad Nacional Experimental "Rafael María Baralt" para la divulgación científica, exhibición de proyectos tecnológicos, repositorio de tesis y descarga de certificados digitales con verificación QR.
+          </p>
+          <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+            <button class="btn btn-warning btn-lg fw-bold px-4 shadow-sm" data-go-tab="registro">
+              <i class="fa-solid fa-paper-plane me-2"></i>Postular Ponencia
+            </button>
+            <button class="btn btn-outline-light btn-lg px-4" data-go-tab="repositorio">
+              <i class="fa-solid fa-book-bookmark me-2"></i>Repositorio de Tesis
+            </button>
+            <button class="btn btn-light btn-lg px-4 text-primary fw-semibold" data-go-tab="acceso">
+              <i class="fa-solid fa-award me-2"></i>Mi Certificado / Login
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="container my-5">
+        <div class="row g-4 text-center mb-5">
+          <div class="col-6 col-md-3">
+            <div class="card stat-card shadow-sm h-100 py-3 border-0">
+              <div class="card-body">
+                <i class="fa-solid fa-microphone-lines fs-1 text-primary-unermb mb-2"></i>
+                <h3 class="fw-bold mb-0" id="statPonentes">0</h3>
+                <p class="text-muted small mb-0">Ponentes e Inscritos</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card stat-card shadow-sm h-100 py-3 border-0">
+              <div class="card-body">
+                <i class="fa-solid fa-calendar-day fs-1 text-primary-unermb mb-2"></i>
+                <h3 class="fw-bold mb-0" id="statEventos">0</h3>
+                <p class="text-muted small mb-0">Actividades Activas</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card stat-card shadow-sm h-100 py-3 border-0">
+              <div class="card-body">
+                <i class="fa-solid fa-book-open fs-1 text-primary-unermb mb-2"></i>
+                <h3 class="fw-bold mb-0" id="statTesis">0</h3>
+                <p class="text-muted small mb-0">Tesis en Repositorio</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card stat-card shadow-sm h-100 py-3 border-0">
+              <div class="card-body">
+                <i class="fa-solid fa-bullhorn fs-1 text-primary-unermb mb-2"></i>
+                <h3 class="fw-bold mb-0" id="statNoticias">0</h3>
+                <p class="text-muted small mb-0">Avisos y Noticias</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mb-4">
+          <h2 class="fw-bold text-primary-emphasis">Módulos del Portal</h2>
+          <p class="text-muted">Selecciona una sección para gestionar tu participación académica.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="card module-card h-100 shadow-sm border-0" data-go-tab="registro" role="button">
+              <div class="card-body p-4">
+                <div class="icon-circle mb-3"><i class="fa-solid fa-file-pen"></i></div>
+                <h5 class="fw-bold">Registro de Ponentes</h5>
+                <p class="text-muted small mb-3">Selecciona tu carrera, línea de investigación asociada y postula tu trabajo.</p>
+                <span class="text-primary-unermb fw-semibold small">Ir a Registro <i class="fa-solid fa-arrow-right ms-1"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="card module-card h-100 shadow-sm border-0" data-go-tab="repositorio" role="button">
+              <div class="card-body p-4">
+                <div class="icon-circle mb-3"><i class="fa-solid fa-book-bookmark"></i></div>
+                <h5 class="fw-bold">Repositorio de Tesis</h5>
+                <p class="text-muted small mb-3">Consulta trabajos de grado, proyectos de investigación y tesis aprobadas por carrera.</p>
+                <span class="text-primary-unermb fw-semibold small">Explorar Tesis <i class="fa-solid fa-arrow-right ms-1"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="card module-card h-100 shadow-sm border-0" data-go-tab="cronograma" role="button">
+              <div class="card-body p-4">
+                <div class="icon-circle mb-3"><i class="fa-solid fa-calendar-days"></i></div>
+                <h5 class="fw-bold">Cronograma Interactivo</h5>
+                <p class="text-muted small mb-3">Consulta horarios actualizados por sede e inscríbete como asistente.</p>
+                <span class="text-primary-unermb fw-semibold small">Ver Horarios <i class="fa-solid fa-arrow-right ms-1"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="card module-card h-100 shadow-sm border-0" data-go-tab="acceso" role="button">
+              <div class="card-body p-4">
+                <div class="icon-circle mb-3"><i class="fa-solid fa-user-lock"></i></div>
+                <h5 class="fw-bold">Acceso y Certificados</h5>
+                <p class="text-muted small mb-3">Inicia sesión para revisar el estatus de tu ponencia y descargar tu PDF con QR.</p>
+                <span class="text-primary-unermb fw-semibold small">Iniciar Sesión <i class="fa-solid fa-arrow-right ms-1"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== PESTAÑA 2: REGISTRO DE PONENTES ==================== -->
+    <div id="tab-registro" class="tab-view">
+      <main class="container my-5">
+        <div class="row align-items-center mb-4">
+          <div class="col-md-8">
+            <h2 class="fw-bold text-primary-emphasis"><i class="fa-solid fa-file-pen me-2"></i>Registro de Ponentes</h2>
+            <p class="text-muted mb-0">Selecciona tu carrera para desplegar las líneas de investigación vinculadas y postular tu trabajo.</p>
+          </div>
+          <div class="col-md-4 text-md-end mt-3 mt-md-0">
+            <button class="btn btn-outline-primary btn-sm fw-semibold" data-go-tab="acceso">
+              <i class="fa-solid fa-right-to-bracket me-1"></i>¿Ya te registraste? Inicia Sesión
+            </button>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border-0 rounded-3">
+          <div class="card-body p-4">
+            <form id="formPonente">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="nombre" class="form-label fw-semibold">Nombre Completo</label>
+                  <input type="text" class="form-control" id="nombre" placeholder="Ej. Pedro Pérez" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="cedula" class="form-label fw-semibold">Cédula de Identidad</label>
+                  <div class="input-group">
+                    <select class="form-select" id="tipoCedula" style="max-width: 85px;" aria-label="Nacionalidad">
+                      <option value="V" selected>V -</option>
+                      <option value="E">E -</option>
+                    </select>
+                    <input type="text" class="form-control" id="cedula" placeholder="Ej. 20123456" maxlength="9" inputmode="numeric" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="correo" class="form-label fw-semibold">Correo Electrónico</label>
+                  <input type="email" class="form-control" id="correo" placeholder="ejemplo@unermb.edu.ve" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="telefono" class="form-label fw-semibold">Teléfono / WhatsApp</label>
+                  <input type="tel" class="form-control" id="telefono" placeholder="Ej. 04141234567" maxlength="11" inputmode="numeric" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="rol" class="form-label fw-semibold">Rol Académico</label>
+                  <select class="form-select" id="rol" required>
+                    <option value="" selected disabled>Seleccione Rol...</option>
+                    <option value="Ponente">Profesor / Investigador (Ponente)</option>
+                    <option value="Ponente Estudiantil (Pregrado)">Estudiante de Pregrado</option>
+                    <option value="Ponente Estudiantil (Postgrado)">Estudiante de Postgrado</option>
+                    <option value="Tesista (Trabajo de Grado)">Tesista (Trabajo de Grado)</option>
+                    <option value="Expositor de Feria">Expositor de Proyecto / Prototipo</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="sede" class="form-label fw-semibold">Sede UNERMB</label>
+                  <select class="form-select" id="sede" required>
+                    <option value="" selected disabled>Seleccione Sede...</option>
+                    <option value="Cabimas">Cabimas</option>
+                    <option value="Ciudad Ojeda">Ciudad Ojeda</option>
+                    <option value="San Francisco">San Francisco</option>
+                    <option value="Los Puertos de Altagracia">Los Puertos de Altagracia</option>
+                  </select>
+                </div>
+
+                <!-- MENÚ DE CARRERAS -->
+                <div class="col-md-6">
+                  <label for="carrera" class="form-label fw-semibold">Carrera / Programa Académico</label>
+                  <select class="form-select" id="carrera" required>
+                    <option value="" selected disabled>Seleccione Carrera...</option>
+                    <option value="PNF en Informática">PNF en Informática</option>
+                    <option value="Ingeniería de Gas">Ingeniería de Gas</option>
+                    <option value="Ingeniería de Mantenimiento Mecánico">Ingeniería de Mantenimiento Mecánico</option>
+                    <option value="Administración (Mención Gerencia Industrial / Aduana)">Administración</option>
+                    <option value="Contaduría Pública">Contaduría Pública</option>
+                    <option value="Educación (Integral / Biología / Química / Matemática)">Educación</option>
+                    <option value="Ingeniería Agroalimentaria">Ingeniería Agroalimentaria</option>
+                  </select>
+                </div>
+
+                <!-- SEGUNDO MENÚ DE LÍNEA DE INVESTIGACIÓN RELACIONADO CON LA CARRERA -->
+                <div class="col-md-6">
+                  <label for="linea" class="form-label fw-semibold">Línea de Investigación (Asociada a la Carrera)</label>
+                  <select class="form-select" id="linea" required disabled>
+                    <option value="" selected disabled>Primero seleccione una carrera...</option>
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label for="titulo" class="form-label fw-semibold">Título de la Investigación / Trabajo</label>
+                  <input type="text" class="form-control" id="titulo" placeholder="Título completo del trabajo, ponencia o tesis" required>
+                </div>
+                <div class="col-12">
+                  <label for="resumen" class="form-label fw-semibold">
+                    Resumen Ejecutivo <small class="text-muted fw-normal">(<span id="contadorPalabras">0</span>/300 palabras)</small>
+                  </label>
+                  <textarea class="form-control" id="resumen" rows="4" placeholder="Sintetice el objetivo, metodología y resultados esperados..." required></textarea>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agregarAlCronograma" checked>
+                    <label class="form-check-label small" for="agregarAlCronograma">
+                      Publicar automáticamente esta ponencia en el <strong>Cronograma Interactivo</strong> de su sede.
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 d-flex justify-content-end gap-2">
+                <button type="reset" class="btn btn-outline-secondary px-3" id="btnLimpiarFormPonente">Limpiar</button>
+                <button type="submit" class="btn btn-unermb px-4 py-2 fw-semibold">
+                  <i class="fa-solid fa-paper-plane me-2"></i>Enviar Postulación
+                </button>
+              </div>
+            </form>
+
+            <!-- Alerta de Éxito -->
+            <div id="alertSuccess" class="alert alert-success mt-4 d-none" role="alert">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div>
+                  <i class="fa-solid fa-circle-check me-2"></i><strong>¡Postulación registrada con éxito!</strong>
+                  <span id="msgCodigoRegistrado" class="d-block small mt-1"></span>
+                </div>
+                <div class="d-flex gap-2">
+                  <button type="button" class="btn btn-sm btn-success fw-semibold" id="btnIrAMiCuentaRecienCreado">
+                    <i class="fa-solid fa-award me-1"></i>Ir a Mi Cuenta y Certificado
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alerta de Error Privada -->
+            <div id="alertErrorCedula" class="alert alert-danger mt-3 d-none" role="alert">
+              <i class="fa-solid fa-circle-exclamation me-2"></i>
+              <span id="msgErrorCedula">Dato en uso, por favor verifícalo.</span>
+            </div>
+
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ==================== PESTAÑA 3: CRONOGRAMA INTERACTIVO ==================== -->
+    <div id="tab-cronograma" class="tab-view">
+      <main class="container my-5">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center mb-4 gap-3">
+          <div>
+            <h2 class="fw-bold text-primary-emphasis"><i class="fa-solid fa-calendar-days me-2"></i>Cronograma Interactivo</h2>
+            <p class="text-muted mb-0">Actividades oficiales sincronizadas en tiempo real. Inscríbase como asistente para obtener su certificado.</p>
+          </div>
+          <div class="d-flex flex-wrap gap-2 w-100 w-lg-auto justify-content-lg-end">
+            <div class="input-group" style="max-width: 260px;">
+              <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" id="buscarEvento" class="form-control" placeholder="Buscar ponencia o autor...">
+            </div>
+            <select id="filtroSede" class="form-select w-auto">
+              <option value="todas">Todas las Sedes</option>
+              <option value="Cabimas">Sede Cabimas</option>
+              <option value="Ciudad Ojeda">Sede Ciudad Ojeda</option>
+              <option value="San Francisco">Sede San Francisco</option>
+              <option value="Los Puertos de Altagracia">Los Puertos de Altagracia</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row g-3" id="listaEventos">
+          <!-- Renderizado dinámico desde scrip.js -->
+        </div>
+
+        <div id="sinEventosMsg" class="text-center py-5 d-none">
+          <i class="fa-regular fa-calendar-xmark display-4 text-muted mb-3"></i>
+          <h5 class="fw-bold">No se encontraron actividades activas</h5>
+          <p class="text-muted small">Intenta cambiar la sede seleccionada o el término de búsqueda.</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- ==================== PESTAÑA 4: STANDS EXPOFERIA ==================== -->
+    <div id="tab-expoferia" class="tab-view">
+      <main class="container my-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+          <div>
+            <h2 class="fw-bold text-primary-emphasis"><i class="fa-solid fa-store me-2"></i>Pabellón de Stands - Expoferia 2026</h2>
+            <p class="text-muted mb-0">Conoce y vota por los proyectos tecnológicos presentados por las distintas sedes.</p>
+          </div>
+          <button class="btn btn-unermb fw-semibold" data-bs-toggle="modal" data-bs-target="#modalNuevoStand">
+            <i class="fa-solid fa-plus me-2"></i>Postular Nuevo Stand
+          </button>
+        </div>
+
+        <div class="d-flex gap-2 flex-wrap mb-4">
+          <button class="btn btn-sm btn-warning fw-semibold filtro-stand active" data-cat="todas">Todos</button>
+          <button class="btn btn-sm btn-outline-secondary filtro-stand" data-cat="Software y Web">Software y Web</button>
+          <button class="btn btn-sm btn-outline-secondary filtro-stand" data-cat="Robótica e IoT">Robótica e IoT</button>
+          <button class="btn btn-sm btn-outline-secondary filtro-stand" data-cat="Gestión e Industria">Gestión e Industria</button>
+        </div>
+
+        <div class="row g-4" id="listaStands">
+          <!-- Renderizado dinámico en scrip.js -->
+        </div>
+      </main>
+    </div>
+
+    <!-- ==================== REPOSITORIO DE TESIS ==================== -->
+    <div id="tab-repositorio" class="tab-view">
+      <main class="container my-5">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center mb-4 gap-3">
+          <div>
+            <h2 class="fw-bold text-primary-emphasis"><i class="fa-solid fa-book-bookmark me-2"></i>Repositorio Digital de Trabajos de Tesis</h2>
+            <p class="text-muted mb-0">Archivo académico de tesis de grado, investigaciones y proyectos aprobados por carrera y línea de investigación UNERMB.</p>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-unermb fw-semibold" data-bs-toggle="modal" data-bs-target="#modalNuevaTesis">
+              <i class="fa-solid fa-cloud-arrow-up me-2"></i>Registrar Tesis
+            </button>
+          </div>
+        </div>
+
+        <!-- Filtros del Repositorio de Tesis -->
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-3">
+            <div class="row g-2 align-items-center">
+              <div class="col-md-5">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                  <input type="text" id="buscarTesis" class="form-control" placeholder="Buscar por título, autor, tutor o palabras clave...">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <select id="filtroCarreraTesis" class="form-select">
+                  <option value="todas">Todas las Carreras</option>
+                  <option value="PNF en Informática">PNF en Informática</option>
+                  <option value="Ingeniería de Gas">Ingeniería de Gas</option>
+                  <option value="Ingeniería de Mantenimiento Mecánico">Ingeniería de Mantenimiento Mecánico</option>
+                  <option value="Administración">Administración</option>
+                  <option value="Contaduría Pública">Contaduría Pública</option>
+                  <option value="Educación">Educación</option>
+                  <option value="Ingeniería Agroalimentaria">Ingeniería Agroalimentaria</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <select id="filtroAnioTesis" class="form-select">
+                  <option value="todos">Todos los Años</option>
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4" id="listaTesis">
+          <!-- Renderizado dinámico desde Firestore -->
+        </div>
+
+        <div id="sinTesisMsg" class="text-center py-5 d-none">
+          <i class="fa-solid fa-book-open display-4 text-muted mb-3"></i>
+          <h5 class="fw-bold">No se encontraron tesis con ese criterio</h5>
+          <p class="text-muted small">Intenta cambiar la carrera seleccionada o el término de búsqueda.</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- ==================== PESTAÑA 5: NOTICIAS Y COMUNICADOS ==================== -->
+    <div id="tab-noticias" class="tab-view">
+      <main class="container my-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+          <div>
+            <h2 class="fw-bold text-primary-emphasis"><i class="fa-solid fa-newspaper me-2"></i>Cartelera Informativa y Noticias</h2>
+            <p class="text-muted mb-0">Comunicados oficiales, avisos de última hora y novedades del Comité Organizador UNERMB 2026.</p>
+          </div>
+          <button class="btn btn-warning fw-bold d-none" id="btnAbrirModalNoticiaAdmin" data-bs-toggle="modal" data-bs-target="#modalNuevaNoticia">
+            <i class="fa-solid fa-plus me-2"></i>Publicar Noticia (Admin)
+          </button>
+        </div>
+
+        <div class="row g-4" id="listaNoticias">
+          <!-- Renderizado dinámico desde Firestore -->
+        </div>
+      </main>
+    </div>
+
+    <!-- ==================== PESTAÑA 6: LOGIN / MI CUENTA Y CERTIFICADO ==================== -->
+    <div id="tab-acceso" class="tab-view">
+      <main class="container my-5">
+
+        <!-- VISTA A: FORMULARIO DE INICIO DE SESIÓN -->
+        <div id="vistaFormularioLogin" class="row justify-content-center">
+          <div class="col-md-7 col-lg-5">
+            <div class="card shadow border-0 rounded-4 overflow-hidden">
+              <div class="card-header navbar-unermb text-white text-center py-4">
+                <i class="fa-solid fa-user-shield fs-1 text-warning mb-2"></i>
+                <h4 class="fw-bold mb-0">Acceso al Portal UNERMB</h4>
+                <small class="opacity-75">Participantes Registrados y Administración</small>
+              </div>
+              <div class="card-body p-4">
+                <form id="formLogin">
+                  <div class="mb-3">
+                    <label for="loginUsuario" class="form-label fw-semibold">Correo Electrónico</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                      <input type="email" class="form-control" id="loginUsuario" placeholder="tu-correo@ejemplo.com" required>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="loginClave" class="form-label fw-semibold">Contraseña / Número de Cédula</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                      <input type="password" class="form-control" id="loginClave" placeholder="Ingresa solo los números de tu cédula" required>
+                    </div>
+                    <div class="form-text small mt-1">
+                      Si eres participante o asistente, tu contraseña son los <strong>números de tu cédula</strong> (ej. 20123456).
+                    </div>
+                  </div>
+
+                  <div id="alertErrorLogin" class="alert alert-danger small py-2 d-none" role="alert">
+                    <i class="fa-solid fa-circle-exclamation me-1"></i>Credenciales incorrectas. Verifica tu correo y número de cédula.
+                  </div>
+
+                  <button type="submit" class="btn btn-unermb w-100 py-2 fw-bold mt-2">
+                    <i class="fa-solid fa-right-to-bracket me-2"></i>Iniciar Sesión
+                  </button>
+                </form>
+              </div>
+              <div class="card-footer bg-body-tertiary text-center py-3">
+                <small class="text-muted">¿Aún no tienes cuenta? <a href="#" class="fw-semibold text-decoration-none" data-go-tab="registro">Regístrate como Ponente</a> o en el <a href="#" class="fw-semibold text-decoration-none" data-go-tab="cronograma">Cronograma</a>.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VISTA B: PERFIL PRIVADO DEL PARTICIPANTE -->
+        <div id="vistaPerfilParticipante" class="d-none">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+            <div>
+              <span class="badge bg-primary mb-1"><i class="fa-solid fa-user-check me-1"></i>Sesión Privada de Participante</span>
+              <h2 class="fw-bold text-primary-emphasis mb-0" id="perfilSaludoNombre">Bienvenido(a)</h2>
+            </div>
+            <button class="btn btn-outline-danger btn-sm fw-semibold btn-cerrar-sesion">
+              <i class="fa-solid fa-power-off me-1"></i>Cerrar Sesión
+            </button>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-5">
+              <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-4">
+                  <h5 class="fw-bold mb-3 border-bottom pb-2"><i class="fa-solid fa-id-badge me-2 text-primary-unermb"></i>Mis Datos Registrados</h5>
+                  <p class="mb-2"><strong>Cédula:</strong> <span id="perfilCedula">-</span></p>
+                  <p class="mb-2"><strong>Correo:</strong> <span id="perfilCorreo">-</span></p>
+                  <p class="mb-2"><strong>Teléfono:</strong> <span id="perfilTelefono">-</span></p>
+                  <p class="mb-2"><strong>Rol Académico:</strong> <span class="badge bg-primary-subtle text-primary-emphasis" id="perfilRol">-</span></p>
+                  <p class="mb-2"><strong>Carrera:</strong> <span id="perfilCarrera">-</span></p>
+                  <p class="mb-2"><strong>Línea de Investigación:</strong> <span id="perfilLinea">-</span></p>
+                  <p class="mb-2"><strong>Sede:</strong> <span id="perfilSede">-</span></p>
+                  <p class="mb-2"><strong>Actividad / Ponencia:</strong> <span id="perfilEvento">-</span></p>
+                  <p class="mb-3"><strong>Fecha de Registro:</strong> <span class="small text-muted" id="perfilFecha">-</span></p>
+
+                  <div class="p-3 rounded bg-body-tertiary border mt-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="fw-semibold small">Estatus de Evaluación:</span>
+                      <span class="badge" id="perfilBadgeEstatus">-</span>
+                    </div>
+                    <small class="text-muted d-block mt-2" id="perfilTextoEstatus">-</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-4 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                      <div>
+                        <h5 class="fw-bold mb-0"><i class="fa-solid fa-award me-2 text-warning"></i>Mi Certificado Digital</h5>
+                        <small class="text-muted font-monospace" id="perfilCodigo">Código: -</small>
+                      </div>
+                      <button class="btn btn-success fw-bold px-4 shadow-sm" id="btnDescargarMiCertificado">
+                        <i class="fa-solid fa-download me-2"></i>Descargar PDF (con QR)
+                      </button>
+                    </div>
+
+                    <div id="alertaCertificadoPendiente" class="alert alert-warning small d-none" role="alert">
+                      <i class="fa-solid fa-clock me-1"></i>Tu registro está pendiente por aprobación del Administrador. Una vez aprobado, se habilitará el botón de descarga.
+                    </div>
+
+                    <!-- Vista Previa Visual del Certificado -->
+                    <div class="cert-preview-card mt-3 p-4 text-center rounded shadow-sm">
+                      <p class="small fw-bold text-primary-unermb mb-0">UNIVERSIDAD NACIONAL EXPERIMENTAL RAFAEL MARÍA BARALT</p>
+                      <p class="text-muted" style="font-size: 0.72rem;">VICERRECTORADO ACADÉMICO - COORDINACIÓN GENERAL DE INVESTIGACIÓN</p>
+                      <h5 class="fw-bold my-2 text-primary-unermb">CERTIFICADO DE PARTICIPACIÓN</h5>
+                      <p class="small fst-italic mb-1">Se otorga el presente certificado a:</p>
+                      <h4 class="fw-bold my-1" id="previewNombre">-</h4>
+                      <p class="small text-muted mb-2" id="previewCedula">-</p>
+                      <p class="small mb-2" id="previewEvento">-</p>
+                      <div class="mt-2 pt-2 border-top border-secondary-subtle d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <small class="text-muted" id="previewFecha" style="font-size: 0.75rem;">-</small>
+                        <span class="badge bg-dark-subtle text-body border"><i class="fa-solid fa-qrcode me-1"></i>Verificación QR Incluida</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- ==================== PESTAÑA 7: PANEL EXCLUSIVO DE ADMINISTRADOR ==================== -->
+    <div id="tab-admin" class="tab-view">
+      <main class="container my-5">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center mb-4 gap-3 bg-dark text-white p-4 rounded-3 shadow-sm border-start border-warning border-5">
+          <div>
+            <span class="badge bg-warning text-dark fw-bold mb-1"><i class="fa-solid fa-lock-open me-1"></i>MODO ADMINISTRADOR ACTIVO</span>
+            <h3 class="fw-bold mb-0">Panel de Control General UNERMB</h3>
+            <p class="small text-white-50 mb-0">Gestión completa de participantes, evaluación de ponencias, certificados, noticias, tesis e historial archivado.</p>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-success btn-sm fw-bold" id="btnExportarCSV">
+              <i class="fa-solid fa-file-excel me-1"></i>Exportar Inscritos a Excel (CSV)
+            </button>
+            <button class="btn btn-warning btn-sm fw-bold" data-bs-toggle="modal" data-bs-target="#modalNuevaNoticia">
+              <i class="fa-solid fa-bullhorn me-1"></i>Nueva Noticia
+            </button>
+            <button class="btn btn-outline-light btn-sm fw-semibold btn-cerrar-sesion">
+              <i class="fa-solid fa-power-off me-1"></i>Salir de Admin
+            </button>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 1 ADMIN: DIRECTORIO COMPLETO DE PARTICIPANTES -->
+        <div class="card shadow-sm border-0 mb-5">
+          <div class="card-header bg-body-tertiary py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h5 class="fw-bold mb-0"><i class="fa-solid fa-users-gear me-2 text-primary-unermb"></i>1. Directorio Completo de Participantes y Evaluación</h5>
+            <div class="input-group input-group-sm" style="max-width: 280px;">
+              <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" id="buscarAdminParticipante" class="form-control" placeholder="Filtrar por cédula, nombre, carrera...">
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0 small">
+                <thead class="table-light">
+                  <tr>
+                    <th class="ps-3">Cédula</th>
+                    <th>Nombre y Contacto</th>
+                    <th>Carrera / Línea</th>
+                    <th>Sede / Rol</th>
+                    <th>Ponencia y Resumen</th>
+                    <th>Fecha Registro</th>
+                    <th>Estatus Evaluación</th>
+                    <th class="text-end pe-3">Certificado</th>
+                  </tr>
+                </thead>
+                <tbody id="tablaAdminParticipantesBody">
+                  <!-- Renderizado dinámico exclusivo Admin -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 2 ADMIN: HISTORIAL DE ACTIVIDADES ARCHIVADAS -->
+        <div class="card shadow-sm border-0">
+          <div class="card-header bg-body-tertiary py-3 d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="fw-bold mb-0"><i class="fa-solid fa-box-archive me-2 text-secondary"></i>2. Historial de Actividades Archivadas / Pasadas</h5>
+              <small class="text-muted">Eventos retirados del cronograma público que se conservan como registro histórico.</small>
+            </div>
+            <span class="badge bg-secondary rounded-pill" id="badgeTotalArchivados">0 archivados</span>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0 small">
+                <thead class="table-light">
+                  <tr>
+                    <th class="ps-3">Título de la Actividad</th>
+                    <th>Ponente</th>
+                    <th>Sede / Lugar</th>
+                    <th>Fecha en que se Archivó</th>
+                    <th class="text-end pe-3">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="tablaHistorialArchivadosBody">
+                  <!-- Renderizado dinámico -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- MODAL: INSCRIBIRSE EN ACTIVIDAD DEL CRONOGRAMA -->
+  <div class="modal fade" id="modalInscribirEvento" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header navbar-unermb text-white">
+          <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-check me-2 text-warning"></i>Inscripción de Asistente</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <form id="formInscribirAsistente">
+          <div class="modal-body p-4">
+            <input type="hidden" id="eventoInscribirTitulo">
+            <input type="hidden" id="eventoInscribirSede">
+            <div class="p-3 rounded bg-body-tertiary mb-3 border">
+              <span class="badge badge-sede mb-1" id="modalEventoSedeBadge">Sede</span>
+              <h6 class="fw-bold mb-0" id="modalEventoNombreDisplay">-</h6>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Nombre Completo</label>
+              <input type="text" class="form-control" id="asistenteNombre" placeholder="Ej. María Rodríguez" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Cédula de Identidad</label>
+              <div class="input-group">
+                <select class="form-select" id="asistenteTipoCedula" style="max-width: 85px;">
+                  <option value="V" selected>V -</option>
+                  <option value="E">E -</option>
+                </select>
+                <input type="text" class="form-control" id="asistenteCedula" placeholder="Ej. 25111222" maxlength="9" inputmode="numeric" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Correo Electrónico (Para tu Login)</label>
+              <input type="email" class="form-control" id="asistenteCorreo" placeholder="ejemplo@correo.com" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Teléfono</label>
+              <input type="tel" class="form-control" id="asistenteTelefono" placeholder="Ej. 04141234567" maxlength="11" inputmode="numeric" required>
+            </div>
+            <div class="mb-0">
+              <label class="form-label fw-semibold">Tipo de Participante</label>
+              <select class="form-select" id="asistenteRol" required>
+                <option value="Asistente">Asistente General</option>
+                <option value="Estudiante Asistente">Estudiante UNERMB</option>
+                <option value="Docente Asistente">Docente / Investigador</option>
+              </select>
+            </div>
+
+            <div id="alertErrorAsistente" class="alert alert-danger mt-3 mb-0 d-none" role="alert">
+              <i class="fa-solid fa-circle-exclamation me-2"></i>
+              <span id="msgErrorAsistente">Dato en uso, por favor verifícalo.</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-unermb fw-semibold">Confirmar Inscripción</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: REGISTRAR NUEVA TESIS EN REPOSITORIO -->
+  <div class="modal fade" id="modalNuevaTesis" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header navbar-unermb text-white">
+          <h5 class="modal-title fw-bold"><i class="fa-solid fa-book-bookmark me-2 text-warning"></i>Registrar Trabajo de Tesis en Repositorio</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <form id="formNuevaTesis">
+          <div class="modal-body p-4">
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label fw-semibold">Título del Trabajo de Grado / Tesis</label>
+                <input type="text" class="form-control" id="tesisTitulo" placeholder="Ej. Sistema Automatizado de Control Académico para la UNERMB" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Autor(es)</label>
+                <input type="text" class="form-control" id="tesisAutores" placeholder="Ej. Br. Jesús Pérez, Br. Diego Peña" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Tutor Académico</label>
+                <input type="text" class="form-control" id="tesisTutor" placeholder="Ej. MSc. Alejandro Rincón" required>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label fw-semibold">Carrera</label>
+                <select class="form-select" id="tesisCarrera" required>
+                  <option value="" selected disabled>Seleccione Carrera...</option>
+                  <option value="PNF en Informática">PNF en Informática</option>
+                  <option value="Ingeniería de Gas">Ingeniería de Gas</option>
+                  <option value="Ingeniería de Mantenimiento Mecánico">Ingeniería de Mantenimiento Mecánico</option>
+                  <option value="Administración">Administración</option>
+                  <option value="Contaduría Pública">Contaduría Pública</option>
+                  <option value="Educación">Educación</option>
+                  <option value="Ingeniería Agroalimentaria">Ingeniería Agroalimentaria</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">Línea de Investigación</label>
+                <select class="form-select" id="tesisLinea" required disabled>
+                  <option value="" selected disabled>Primero elija carrera...</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label fw-semibold">Año</label>
+                <select class="form-select" id="tesisAnio" required>
+                  <option value="2026" selected>2026</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Enlace al Documento / Repositorio Drive o GitHub (Opcional)</label>
+                <input type="url" class="form-control" id="tesisEnlace" placeholder="https://drive.google.com/... o https://github.com/...">
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Resumen / Abstract</label>
+                <textarea class="form-control" id="tesisResumen" rows="3" placeholder="Breve descripción de la problemática, metodología y aportes de la tesis..." required></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-unermb fw-semibold">Guardar en Repositorio</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: POSTULAR NUEVO STAND EXPOFERIA -->
+  <div class="modal fade" id="modalNuevoStand" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header navbar-unermb text-white">
+          <h5 class="modal-title fw-bold"><i class="fa-solid fa-store me-2 text-warning"></i>Registrar Proyecto en Expoferia</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <form id="formNuevoStand">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Nombre del Proyecto / Stand</label>
+              <input type="text" class="form-control" id="standTitulo" placeholder="Ej. Sistema Automatizado de Control Académico" required>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label fw-semibold">Categoría</label>
+                <select class="form-select" id="standCategoria" required>
+                  <option value="Software y Web">Software y Web</option>
+                  <option value="Robótica e IoT">Robótica e IoT</option>
+                  <option value="Gestión e Industria">Gestión e Industria</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label fw-semibold">Sede</label>
+                <select class="form-select" id="standSede" required>
+                  <option value="Cabimas">Cabimas</option>
+                  <option value="Ciudad Ojeda">Ciudad Ojeda</option>
+                  <option value="San Francisco">San Francisco</option>
+                  <option value="Los Puertos de Altagracia">Los Puertos de Altagracia</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Equipo Responsable</label>
+              <input type="text" class="form-control" id="standEquipo" placeholder="Ej. Carlos Lugo, Ana Díaz" required>
+            </div>
+            <div class="mb-0">
+              <label class="form-label fw-semibold">Descripción Breve</label>
+              <textarea class="form-control" id="standDesc" rows="3" placeholder="¿Qué problema resuelve tu prototipo o sistema?" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-unermb fw-semibold">Publicar Stand</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PUBLICAR NUEVA NOTICIA (SOLO ADMIN) -->
+  <div class="modal fade" id="modalNuevaNoticia" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header navbar-unermb text-white">
+          <h5 class="modal-title fw-bold"><i class="fa-solid fa-bullhorn me-2 text-warning"></i>Publicar Comunicado / Noticia</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <form id="formNuevaNoticia">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Título de la Noticia</label>
+              <input type="text" class="form-control" id="noticiaTitulo" placeholder="Ej. Cambio de horario en Salón A - Sede Cabimas" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Categoría / Etiqueta</label>
+              <select class="form-select" id="noticiaCategoria" required>
+                <option value="Comunicado Oficial">Comunicado Oficial</option>
+                <option value="Aviso Urgente">Aviso Urgente</option>
+                <option value="Expoferia 2026">Expoferia 2026</option>
+                <option value="Resultados y Premios">Resultados y Premios</option>
+              </select>
+            </div>
+            <div class="mb-0">
+              <label class="form-label fw-semibold">Contenido del Comunicado</label>
+              <textarea class="form-control" id="noticiaContenido" rows="4" placeholder="Escriba los detalles completos del anuncio..." required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-unermb fw-semibold">Publicar Ahora</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-light py-4 mt-auto border-top border-warning border-3">
+    <div class="container text-center">
+      <p class="mb-1 fw-bold">Universidad Nacional Experimental "Rafael María Baralt" (UNERMB)</p>
+      <p class="small text-secondary mb-2">Vicerrectorado Académico - Coordinación General de Investigación | Edición 2026</p>
+      <p class="small text-warning fw-semibold mb-0">
+        <i class="fa-solid fa-code me-1"></i>Diseñado por Jesús Pérez y Diego Peña
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts Externos -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  
+  <!-- SDKs de Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <!-- Tu código JavaScript separado -->
+  <script src="scrip.js"></script>
+</body>
+</html>
